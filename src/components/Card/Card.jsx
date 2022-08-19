@@ -1,10 +1,15 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import styles from './Card.module.css';
+import styles from "./Card.module.css";
 
-export const Card = ({ produto }) => (
-  <div className={styles.card}>
-    <img className={styles.img} alt='Foto do prato' src={produto.img} height={200} />
+export const Card = ({ produto, selecionado, onSelecionar }) => (
+  <div className={`${styles.card} ${styles.cardSelected} `}>
+    <img
+      className={styles.img}
+      alt="Foto do prato"
+      src={produto.img}
+      height={200}
+    />
 
     <div className={styles.info}>
       <h2 className={styles.infoTitulo}>{produto.nome}</h2>
@@ -14,7 +19,7 @@ export const Card = ({ produto }) => (
 
     <div className={styles.footer}>
       <strong className={styles.footerValor}>
-        {`R$ ${produto.valor.toFixed(2).replace('.', `,`)}`}
+        {`R$ ${produto.valor.toFixed(2).replace(".", `,`)}`}
       </strong>
 
       <p>{produto.tempoPreparo}</p>
@@ -23,6 +28,8 @@ export const Card = ({ produto }) => (
 );
 
 Card.propTypes = {
+  selecionado: PropTypes.bool,
+  onSelecionar: PropTypes.func,
   produto: PropTypes.shape({
     img: PropTypes.string.isRequired,
     nome: PropTypes.string.isRequired,

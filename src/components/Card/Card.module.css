@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.cardSelected {
+  background-color: #38b00029;
+}
+
 .img {
   border-radius: 20px 20px 0 0;
   width: 100%;

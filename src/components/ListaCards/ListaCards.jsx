@@ -6,7 +6,15 @@ import styles from "./ListaCards.module.css";
 import { useState } from "react";
 
 export const ListaCards = ({ produtos }) => {
-  const [idSelecionados, setIdSelecionados] = useState([]);
+  const [idSelecionados, setIdSelecionados] = useState([2, 3]);
+
+  const handleSelecionar = (idASelecionar) => {
+    if (idSelecionados.includes(idASelecionar)) {
+      setIdSelecionados(idSelecionados.filter((id) => id !== idASelecionar));
+    } else {
+      setIdSelecionados([...idSelecionados, idASelecionar]);
+    }
+  };
 
   return (
     <ul className={styles.lista}>
@@ -14,8 +22,10 @@ export const ListaCards = ({ produtos }) => {
         <li className={styles.listaItem} key={produto.id}>
           <Card
             produto={produto}
-            selecionado={false}
-            onSelecionar={() => console.log("Clicou no card!")}
+            selecionado={idSelecionados.includes(produto.id)}
+            onSelecionar={() => {
+              handleSelecionar(produto.id);
+            }}
           />
         </li>
       ))}

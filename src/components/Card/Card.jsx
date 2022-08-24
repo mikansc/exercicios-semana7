@@ -4,7 +4,8 @@ import styles from "./Card.module.css";
 
 export const Card = ({ produto, selecionado, onSelecionar }) => (
   <div
-    className={`${styles.card} ${selecionado && styles.cardSelected} `}
+    className={`${styles.card} ${selecionado && styles.cardSelected}`}
+    // className={styles.card + " " + (selecionado && styles.cardSelected)}
     onClick={onSelecionar}
   >
     <img

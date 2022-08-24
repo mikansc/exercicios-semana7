@@ -11,7 +11,13 @@ export const FiltroSecao = ({ secoes = [], onSelecionarSecao }) => {
       >
         {secoes.map((secao) => (
           <li>
-            <button onClick={() => {}}>{secao.nome}</button>
+            <button
+              onClick={() => {
+                onSelecionarSecao(secao.nome);
+              }}
+            >
+              {secao.nome}
+            </button>
           </li>
         ))}
       </ul>

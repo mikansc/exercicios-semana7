@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Footer, Header, Secao, FiltroSecao } from "@components";
 import produtos from "@services/produtos.json";
 import styles from "./App.module.css";
@@ -12,16 +13,25 @@ const secoes = [
 ];
 
 function App() {
+  const [filtro, setFiltro] = useState(null);
   console.log(subSecoesEntradas, subSecoesPrincipais);
 
-  const handleSelecionarSecao = (titulo) => {};
+  const handleSelecionarSecao = (titulo) => {
+    if (filtro === titulo) {
+      setFiltro(null);
+    } else {
+      setFiltro(titulo);
+    }
+  };
+
+  const secoesFiltradas = filtro ? secoes.filter((secao) => secao.nome === filtro) : secoes;
 
   return (
     <div className={styles.app}>
       <Header />
       <FiltroSecao secoes={secoes} onSelecionarSecao={handleSelecionarSecao} />
       <main className={styles.main}>
-        {secoes.map((secao) => {
+        {secoesFiltradas.map((secao) => {
           return (
             <Secao
               nome={secao.nome}
@@ -30,8 +40,6 @@ function App() {
             />
           );
         })}
-
-        <Secao nome="Sobremesas" produtos={produtos.sobremesas} />
       </main>
       <Footer />
     </div>

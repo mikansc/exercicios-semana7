@@ -1,0 +1,1 @@
+export { FiltroSecao } from "./FiltroSecao";
